@@ -1,0 +1,19 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorhei</item>
+        <item name="colorPrimaryDark">@color/colorhei</item>
+        <item name="colorAccent">@color/colorhei</item>
+        <item name="android:textColorPrimary">@color/colorhei</item>
+    </style>
+
+    <style name="WelcomeTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@color/colorbai</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@mipmap/welcome</item>
+    </style>
+
+</resources>

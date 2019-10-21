@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="6dp"
+    tools:context=".MainActivity"
+    android:background="@mipmap/bg_list">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/MlistView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#00000000"  >
+        </ListView>
+
+        <!--   borderWidth  圆圈边界宽度效果类似魔法阵那种双重圈
+               fabSize 整个按钮的大小
+               pressedTranslationZ   设置FAB按下时的阴影
+                hoveredFocusedTranslationZ  设置FAB按住时的阴影
+                maxImageSize    设置Fab里面图片的大小    -->
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/Madd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="15dp"
+            android:gravity="bottom|end"
+            android:src="@mipmap/add_picture"
+            app:backgroundTint="#E4FFFFFF"
+            app:borderWidth="1dp"
+            app:fabSize="mini"
+            app:hoveredFocusedTranslationZ="1dp"
+            app:maxImageSize="15dp"
+            app:pressedTranslationZ="1dp" />
+    </FrameLayout>
+
+</android.support.design.widget.CoordinatorLayout>

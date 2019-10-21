@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:padding="12dp"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="44dp"
+            android:layout_height="wrap_content"
+            android:text="书名:"
+            android:textSize="15dp"
+            android:textColor="#575252" />
+
+        <EditText
+            android:id="@+id/Nbookname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="请输入书名"
+            android:textSize="15dp"
+            android:textCursorDrawable="@drawable/color_cursor"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="44dp"
+            android:layout_height="wrap_content"
+            android:text="状态:"
+            android:textSize="15dp"
+            android:textColor="#575252" />
+
+        <EditText
+            android:id="@+id/Nstate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="20"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="15dp"
+            android:hint="请输入阅读的状态（已读完/P000页）" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="44dp"
+            android:layout_height="wrap_content"
+            android:text="感想:"
+            android:textSize="15dp"
+            android:textColor="#575252" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--   使用scrollView包裹让EditText滑动带有惯性
+           android:fastScrollEnabled="true"    -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fastScrollEnabled="true">
+
+            <EditText
+                android:id="@+id/Nthought"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="top|left"
+                android:hint="请输入读书后的感言\nps:更新感想可以用一串*与更新的时间来区分"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textSize="15dp" />
+        </ScrollView>
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/Nfinish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:clickable="true"
+            android:gravity="bottom|end"
+            app:backgroundTint="#F8F7F3"
+            app:borderWidth="1dp"
+            app:fabSize="mini"
+            app:hoveredFocusedTranslationZ="5dp"
+            app:maxImageSize="15dp"
+            app:pressedTranslationZ="5dp"
+            app:srcCompat="@mipmap/duigou" />
+    </FrameLayout>
+
+</LinearLayout>
