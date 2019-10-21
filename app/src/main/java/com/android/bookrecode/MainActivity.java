@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     LayoutInflater layoutInflater;
     ArrayList<Data> arrayList;
     MyDatabase myDatabase;
+    MyAdapter adapter ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         myDatabase = new MyDatabase(this);
         arrayList = myDatabase.getArray();
-        MyAdapter adapter = new MyAdapter(layoutInflater, arrayList);
+        adapter= new MyAdapter(layoutInflater, arrayList);
         listView.setAdapter(adapter);
         Log.d("main", "当前适配器数据" + adapter);
 
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {  //长按删除
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent,View view, final int position, final long id) {
                 new AlertDialog.Builder(MainActivity.this)
                         .setMessage("确定要删除此记录？")
                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -66,10 +67,8 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 myDatabase.toDelete(arrayList.get(position).getIds());
-
-                                MyAdapter myAdapter = new MyAdapter(layoutInflater, arrayList);
-                                listView.setAdapter(myAdapter);
-                                Log.d("main", "点击确认后适配器数据" + myAdapter);
+                                arrayList = myDatabase.getArray();
+                                adapter.refresh(arrayList);
                             }
                         })
                         .show();
@@ -87,24 +86,27 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-        public boolean onKeyDown(int keyCode, KeyEvent event) { //捕捉按下返回键操作
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) { //捕捉按下返回键操作
             if (keyCode == KeyEvent.KEYCODE_BACK) {
                 exit();
                 return false;
             }
             return super.onKeyDown(keyCode, event);//若按键为其他则继续调用该方法
-        }
+    }
 
-        public void exit() {
-            if ((System.currentTimeMillis() - exitTime) > 2000) { 	// 判断间隔时间 小于2秒就退出应用
-                Toast.makeText(getApplicationContext(), "再按一次退出程序",
-                        Toast.LENGTH_SHORT).show();
-                exitTime = System.currentTimeMillis();
-            } else {
-                finish();
-                System.exit(0);//正常退出应用，但要确保任务栈中所有activity已经finish，否则会重启
-            }
+    public void exit() {
+        if ((System.currentTimeMillis() - exitTime) > 2000) { 	// 判断间隔时间 小于2秒就退出应用
+            Toast.makeText(getApplicationContext(), "再按一次退出程序",
+                    Toast.LENGTH_SHORT).show();
+            exitTime = System.currentTimeMillis();
+        } else {
+            finish();
+            System.exit(0);//正常退出应用，但要确保任务栈中所有activity已经finish，否则会重启
         }
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

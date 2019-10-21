@@ -17,7 +17,7 @@ public class Welcome  extends AppCompatActivity {
                 startActivity(mainIntent);
                 finish();
             }
-        },3000);//3000毫秒后执行，即3秒跳转
+        },100);//3000毫秒后执行，即3秒跳转
     }
 
 

@@ -55,7 +55,7 @@ public class MyDatabase {
          *3.当数据库存在时会调用onOpen方法
          *4. 结束时调用onClose方法
          */
-        Cursor cursor=mydatabase.rawQuery("select bookname,state,thought from mybook where ids='"+id+"'" , null);
+        Cursor cursor=mydatabase.rawQuery("select bookname,state,thought from mybook where ids="+id+"" , null);
         cursor.moveToFirst();
         String bookname = cursor.getString(cursor.getColumnIndex("bookname"));
         String state = cursor.getString(cursor.getColumnIndex("state"));
@@ -81,4 +81,5 @@ public class MyDatabase {
         mydatabase.execSQL("delete from mybook where ids="+ids+"");
         mydatabase.close();
     }
+
 }

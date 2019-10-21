@@ -76,4 +76,10 @@ public class MyAdapter extends BaseAdapter {
     class ViewHolder{     //内部类，对控件进行缓存
         TextView tv1,tv2,tv3,tv4;
     }
+
+    public void refresh(ArrayList<Data> arry)
+    {
+        array=arry;
+        notifyDataSetChanged();
+    }
 }
