@@ -8,12 +8,20 @@
         <item name="colorAccent">@color/colorhei</item>
         <item name="android:textColorPrimary">@color/colorhei</item>
     </style>
-
+    <!-- 用于欢迎界面的配置 -->
     <style name="WelcomeTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:statusBarColor">@color/colorbai</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@mipmap/welcome</item>
     </style>
+    <!-- 用于显示全文功能 -->
+    <declare-styleable name="FolderTextView">
+        <attr name="foldText" format="string"/>
+        <attr name="unFoldText" format="string"/>
+        <attr name="foldLine" format="integer"/>
+        <attr name="tailTextColor" format="color"/>
+        <attr name="canFoldAgain" format="boolean"/>
+    </declare-styleable>
 
 </resources>

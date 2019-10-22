@@ -1,14 +1,17 @@
 package com.android.bookrecode;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,7 +20,8 @@ public class New extends AppCompatActivity {
     EditText ed_bookname;
     EditText ed_state;
     EditText ed_thought;
-    FloatingActionButton floatingActionButton;
+    FloatingActionButton fFinishi;
+    FloatingActionButton fImage;
     MyDatabase myDatabase;
     Data data;
     int ids;
@@ -28,7 +32,8 @@ public class New extends AppCompatActivity {
         ed_bookname = (EditText) findViewById(R.id.Nbookname);
         ed_state = (EditText) findViewById(R.id.Nstate);
         ed_thought = (EditText) findViewById(R.id.Nthought);
-        floatingActionButton = (FloatingActionButton) findViewById(R.id.Nfinish);
+        fFinishi = (FloatingActionButton) findViewById(R.id.Nfinish);
+        fImage = (FloatingActionButton) findViewById(R.id.Nimage);
         myDatabase = new MyDatabase(this);
         Intent intent = this.getIntent();
         ids = intent.getIntExtra("ids", 0);
@@ -38,13 +43,30 @@ public class New extends AppCompatActivity {
             ed_state.setText(data.getState());
             ed_thought.setText(data.getThought());
         }
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        fFinishi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isSave();
             }
         });
+
+        ed_thought.setOnFocusChangeListener(new android.view.View.
+                OnFocusChangeListener() {  //添加图片按钮在选中ed_thought时才出现
+            @Override
+            @SuppressLint("RestrictedApi")
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 此处为得到焦点时的处理内容
+                    fImage.setVisibility(fImage.VISIBLE);
+                } else {
+                    // 此处为失去焦点时的处理内容
+                    fImage.setVisibility(fImage.GONE);
+                }
+            }
+        });
     }
+
+
 
     private void isSave(){   //用于处理新建\修改书签
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 E hh:mm");//格式化日期
@@ -53,19 +75,26 @@ public class New extends AppCompatActivity {
         String bookename = ed_bookname.getText().toString();
         String state = ed_state.getText().toString();
         String thought = ed_thought.getText().toString();
-        if(ids!=0){  //修改表中数据并返回主页面
+
+        if (state.length()>0 && bookename.length()>0){//判断用户输入情况
+            if(ids!=0){  //修改表中数据并返回主页面
             data=new Data(ids,bookename,state,thought,time);
             myDatabase.toUpdate(data);
             Intent intent=new Intent(New.this,MainActivity.class);
             startActivity(intent);
             New.this.finish();
-        }
-        else{  //新建书签，插入数据表并返回主页面
+            }
+            else{  //新建书签，插入数据表并返回主页面
             data=new Data(bookename,state,thought,time);
             myDatabase.toInsert(data);
             Intent intent=new Intent(New.this,MainActivity.class);
             startActivity(intent);
             New.this.finish();
+            }
+        }
+        else{//用户没有输入书名和阅读状态
+            Toast.makeText(this, "请至少输入书名和阅读状态", Toast.LENGTH_SHORT).show();
+            return;
         }
     }
 

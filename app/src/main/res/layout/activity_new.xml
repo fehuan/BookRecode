@@ -111,6 +111,26 @@
             app:maxImageSize="15dp"
             app:pressedTranslationZ="5dp"
             app:srcCompat="@mipmap/duigou" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/Nimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:clickable="true"
+            android:gravity="bottom|center|end"
+            app:backgroundTint="#F8F7F3"
+            app:borderWidth="1dp"
+            app:fabSize="mini"
+            app:hoveredFocusedTranslationZ="5dp"
+            app:maxImageSize="30dp"
+            app:pressedTranslationZ="5dp"
+            android:visibility="gone"
+            app:srcCompat="@android:drawable/ic_menu_gallery" />
+
     </FrameLayout>
 
 </LinearLayout>
